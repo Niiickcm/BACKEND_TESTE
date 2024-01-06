@@ -11,9 +11,9 @@ const ErrorInitialMessage = "Ocorreu um erro ao ";
 //função para listar todas as tasks
 export const getTasks = async (req: Request, res: Response) => {
   try {
-    const Alltasks = await getAllTaksUtil();
+    /* const Alltasks = await getAllTaksUtil(); */
 
-    res.json(Alltasks);
+    res.json("Alltasks");
   } catch (error) {
     res.status(500).json({ error: ErrorInitialMessage + "obter as tarefas." });
   }
