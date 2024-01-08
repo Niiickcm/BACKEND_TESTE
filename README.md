@@ -44,7 +44,10 @@ Criar uma tarefa:
 
 Rota: /tasks
 Método: POST
-Corpo: JSON ```bash {"title":"nova tarefa","completed":false}```
+Corpo: JSON
+```bash 
+{"title":"nova tarefa","completed":false}
+```
 
 Deletar uma tarefa:
 
@@ -57,7 +60,10 @@ Alterar uma tarefa:
 Rota: /tasks/:id
 Método: UPDATE
 Parâmetro: id da tarefa
-Corpo: JSON ```bash {"completed":true}```
+Corpo: JSON 
+```bash
+{"completed":true}
+```
 
 Hospedagem e Atualizações Automáticas
 A aplicação está hospedada na AWS utilizando o Elastic Beanstalk. O controle de atualizações automáticas é feito através do CodeBuild, que executa atualizações sempre que um commit é feito na branch main do repositório.
