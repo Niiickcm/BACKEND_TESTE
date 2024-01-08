@@ -1,5 +1,7 @@
+import { generateRandomNumber } from "../utils";
+
 type AddItemTask = {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
 };
@@ -8,11 +10,11 @@ type UpdateItemTask = {
   completed: boolean;
 };
 
+const hash = generateRandomNumber();
+
 // Simulação de uma base de dados em memória
 export var tasks: AddItemTask[] = [
-  { id: 1, title: "Fazer Café", completed: true },
-  { id: 2, title: "Ir no shopping", completed: false },
-  { id: 3, title: "Estudar", completed: true },
+  { id: hash, title: "Fazer Café", completed: true },
 ];
 
 // Função para listar todos os itens
@@ -21,7 +23,7 @@ export function getAllItems() {
 }
 
 // Função para buscar um item pelo ID
-export function getItemById(id: number) {
+export function getItemById(id: string) {
   return tasks.find((item) => item.id === id);
 }
 
@@ -31,7 +33,7 @@ export function addItem(newItem: AddItemTask) {
 }
 
 // Função para atualizar um item existente
-export function updateItem(id: number, updatedItem: UpdateItemTask) {
+export function updateItem(id: string, updatedItem: UpdateItemTask) {
   const index = tasks.findIndex((item) => item.id === id);
   if (index !== -1) {
     tasks[index] = { ...tasks[index], ...updatedItem };
@@ -41,6 +43,6 @@ export function updateItem(id: number, updatedItem: UpdateItemTask) {
 }
 
 // Função para remover um item pelo ID
-export function removeItem(id: number) {
+export function removeItem(id: string) {
   tasks = tasks.filter((item) => item.id !== id);
 }

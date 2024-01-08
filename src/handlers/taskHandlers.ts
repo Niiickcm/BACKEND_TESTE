@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { addItem, getAllItems, removeItem, updateItem, tasks } from "../db";
-import { idIcrement } from "../utils";
+import { generateRandomNumber } from "../utils";
 
 const ErrorInitialMessage = "Ocorreu um erro ao ";
 
@@ -18,10 +18,11 @@ export const getTasks = async (req: Request, res: Response) => {
 
 //função para adicionar uma task
 export const createNewTask = async (req: Request, res: Response) => {
+  const hash = generateRandomNumber();
   try {
     const { title, completed } = req.body;
 
-    const newItem = { id: idIcrement(tasks.length), title, completed };
+    const newItem = { id: hash, title, completed };
 
     addItem(newItem);
 
@@ -36,7 +37,7 @@ export const deleteOneTask = async (req: Request, res: Response) => {
   try {
     const taskId = req.params.id;
 
-    removeItem(Number(taskId));
+    removeItem(taskId);
 
     res.status(204).json({ message: "Tarefa deletada com sucesso!" });
   } catch (error) {
@@ -51,7 +52,7 @@ export const updateTask = async (req: Request, res: Response) => {
     const { completed } = req.body;
     const updatedItem = { completed };
 
-    updateItem(Number(taskId), updatedItem);
+    updateItem(taskId, updatedItem);
 
     res.status(200).json({ message: "Tarefa alterada com sucesso!" });
   } catch (error) {
