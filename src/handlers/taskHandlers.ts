@@ -25,7 +25,7 @@ export const createNewTask = async (req: Request, res: Response) => {
 
     addItem(newItem);
 
-    res.status(201).json({ message: "Tarefa criada com sucesso!" });
+    res.status(201).json({ data: newItem });
   } catch (error) {
     res.status(500).json({ error: ErrorInitialMessage + "criar a tarefa." });
   }
